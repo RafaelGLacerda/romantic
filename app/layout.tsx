@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Created with v0',
   generator: 'v0.dev',
   icons: {
-    icon: '/favicon.png', // ícone de coração, por exemplo
+    icon: '/favicon.ico', // ícone de coração, por exemplo
   },
 }
 
