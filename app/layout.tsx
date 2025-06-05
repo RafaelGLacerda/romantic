@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Lara e Rafa',
   description: 'Created with v0',
   generator: 'v0.dev',
+  icons: {
+    icon: '/favicon.png', // ícone de coração, por exemplo
+  },
 }
 
 export default function RootLayout({
@@ -15,8 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/favicon.png" type="image/png" />
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   )
 }
