@@ -33,6 +33,8 @@ export default function RomanticWebsite() {
   // Data de início: 02 de abril de 2024 às 16:00
 const startDate = new Date(2024, 3, 2, 16, 0, 0) // mês 3 = abril (0-indexed)
 
+   // mês 2 = março (0-indexed)
+
   useEffect(() => {
     // Inicializar áudio - AQUI É ONDE VOCÊ COLOCA O ARQUIVO DE MÚSICA
     const audioElement = new Audio("/simply-red-you-make-me-feel-brand-new.mp3")
@@ -44,24 +46,48 @@ const startDate = new Date(2024, 3, 2, 16, 0, 0) // mês 3 = abril (0-indexed)
     }
   }, [])
 
-  useEffect(() => {
-    // Atualizar contador de tempo a cada segundo
-    const interval = setInterval(() => {
-      const now = new Date()
-      const diff = now.getTime() - startDate.getTime()
+useEffect(() => {
+  const interval = setInterval(() => {
+    const now = new Date()
 
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365))
-      const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30))
-      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+    let years = now.getFullYear() - startDate.getFullYear()
+    let months = now.getMonth() - startDate.getMonth()
+    let days = now.getDate() - startDate.getDate()
+    let hours = now.getHours() - startDate.getHours()
+    let minutes = now.getMinutes() - startDate.getMinutes()
+    let seconds = now.getSeconds() - startDate.getSeconds()
 
-      setTimeElapsed({ years, months, days, hours, minutes, seconds })
-    }, 1000)
+    if (seconds < 0) {
+      seconds += 60
+      minutes--
+    }
 
-    return () => clearInterval(interval)
-  }, [])
+    if (minutes < 0) {
+      minutes += 60
+      hours--
+    }
+
+    if (hours < 0) {
+      hours += 24
+      days--
+    }
+
+    if (days < 0) {
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0)
+      days += prevMonth.getDate()
+      months--
+    }
+
+    if (months < 0) {
+      months += 12
+      years--
+    }
+
+    setTimeElapsed({ years, months, days, hours, minutes, seconds })
+  }, 1000)
+
+  return () => clearInterval(interval)
+}, [])
 
   const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
     if (showMainSite) return
