@@ -4,8 +4,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: 'Lara e Rafa',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  description: 'Site romantico para mim e minha esposa',
+  generator: 'Rafael Lacerda',
   icons: {
     icon: '/coracao.png', // ícone de coração, por exemplo
   },
