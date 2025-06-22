@@ -30,8 +30,8 @@ export default function RomanticWebsite() {
     seconds: 0,
   })
 
-  // Data de início: 27 de março de 2024 às 16:00
-  const startDate = new Date(2024, 2, 27, 16, 0, 0) // mês 2 = março (0-indexed)
+  // Data de início: 02 de abril de 2024 às 16:00
+const startDate = new Date(2024, 3, 2, 16, 0, 0) // mês 3 = abril (0-indexed)
 
   useEffect(() => {
     // Inicializar áudio - AQUI É ONDE VOCÊ COLOCA O ARQUIVO DE MÚSICA
